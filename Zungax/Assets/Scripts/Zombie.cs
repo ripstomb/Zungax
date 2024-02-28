@@ -16,12 +16,15 @@ public class Zombie : MonoBehaviour
     private ZombieState _currentState = ZombieState.Walking;
     private Animator _animator;
     private CharacterController _characterController;
+    private float _timeToWakeUp;
+    private Transform _hipsBone;
 
     void Awake()
     {
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
+        _hipsBone = _animator.GetBoneTransform(HumanBodyBones.Hips);
 
         DisableRagdoll();
     }
@@ -44,13 +47,28 @@ public class Zombie : MonoBehaviour
     {
         EnableRagdoll();
 
-        Rigidbody hitRigidbody = _ragdollRigidbodies.OrderBy(rigidbody => Vector3.Distance(rigidbody.position, hitPoint)).First();
-
+        Rigidbody hitRigidbody = FindHitRigidbody(hitPoint);
         hitRigidbody.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
 
         _currentState = ZombieState.Ragdoll;
+        _timeToWakeUp = Random.Range(5, 10);
     }
 
+    private Rigidbody FindHitRigidbody(Vector3 hitPoint)
+    {
+        Rigidbody closestRigidbody = null;
+        float closestDistance = 0;
+        foreach (var rigidbody in _ragdollRigidbodies)
+        {
+            float distance = Vector3.Distance(rigidbody.position, hitPoint);
+            if (closestRigidbody == null || distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestRigidbody = rigidbody;   
+            }
+        }
+        return closestRigidbody;    
+    }
     private void DisableRagdoll()
     {
         foreach (var rigidbody in _ragdollRigidbodies)
@@ -85,7 +103,26 @@ public class Zombie : MonoBehaviour
 
     private void RagdollBehaviour()
     {
+        _timeToWakeUp -= Time.deltaTime; 
+        if (_timeToWakeUp <= 0) 
+        {
+            AlignPositionToHips();
 
+            _currentState = ZombieState.Walking;
+            DisableRagdoll();
+        }
+    }
+
+    private void AlignPositionToHips() 
+    {
+        Vector3 originalHipsPosition = _hipsBone.position;
+        transform.position = _hipsBone.position;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo))
+        {
+            transform.position = new Vector3(transform.position.x, hitInfo.point.y, transform.position.z);
+        }
+        _hipsBone.position = originalHipsPosition;
     }
 }
 
