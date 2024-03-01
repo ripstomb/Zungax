@@ -33,7 +33,7 @@ public class Shoot : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo))
             {
-                Zombie zombie = hitInfo.collider.GetComponentInParent<Zombie>();
+                Enemy zombie = hitInfo.collider.GetComponentInParent<Enemy>();
 
                 if (zombie != null)
                 {
