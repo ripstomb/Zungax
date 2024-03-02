@@ -622,8 +622,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1713612366}
-  _standUpStateName: Stand Up
-  _standUpClipName: Stand Up
+  _faceUpStandUpStateName: Face Up Stand Up
+  _faceDownStandUpStateName: Face Down Stand Up
+  _faceUpStandUpClipName: Stand Up
+  _faceDownStandUpClipName: Standing Up
   _timeToResetBones: 0.5
 --- !u!1001 &1188365830
 PrefabInstance:
