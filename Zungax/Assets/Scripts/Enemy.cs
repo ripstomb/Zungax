@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     }
 
     [SerializeField]
-    private Camera _camera;
+    private GameObject puto;
 
     [SerializeField]
     private string _faceUpStandUpStateName;
@@ -150,12 +150,12 @@ public class Enemy : MonoBehaviour
 
     private void WalkingBehaviour()
     {
-        Vector3 direction = _camera.transform.position - transform.position;
+        Vector3 direction = puto.transform.position - transform.position;
         direction.y = 0;
         direction.Normalize();
 
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 20 * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 200 * Time.deltaTime);
     }
 
     private void RagdollBehaviour()
