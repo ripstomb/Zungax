@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     }
 
     [SerializeField]
-    private GameObject puto;
+    private GameObject lookfor;
 
     [SerializeField]
     private string _faceUpStandUpStateName;
@@ -150,7 +150,7 @@ public class Enemy : MonoBehaviour
 
     private void WalkingBehaviour()
     {
-        Vector3 direction = puto.transform.position - transform.position;
+        Vector3 direction = lookfor.transform.position - transform.position;
         direction.y = 0;
         direction.Normalize();
 
