@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameOverScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameOverScript : MonoBehaviour
     private int currentPrefabCount;
     private float timer = 120f;
     private bool gameOver = false;
+    public TextMeshProUGUI timerText;
 
     void Start()
     {
@@ -23,6 +25,8 @@ public class GameOverScript : MonoBehaviour
 
         // Restamos tiempo al temporizador
         timer -= Time.deltaTime;
+
+        timerText.text = "Time Remaining: " + Mathf.Round(timer).ToString();
 
         // Si el temporizador llega a cero, activamos el game over
         if (timer <= 0)
