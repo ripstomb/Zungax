@@ -122,6 +122,14 @@ public class Enemy : MonoBehaviour
         _timeToWakeUp = Random.Range(5, 10);
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Barrier"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private Rigidbody FindHitRigidbody(Vector3 hitPoint)
     {
         Rigidbody closestRigidbody = null;
