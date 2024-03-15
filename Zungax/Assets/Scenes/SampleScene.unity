@@ -307,7 +307,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156183332}
   serializedVersion: 4
-  m_Mass: 10.9375
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1322,6 +1322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Robot_rigged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465940246521907071, guid: cd25ee6469489c941b673ccf87456ca1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: cd25ee6469489c941b673ccf87456ca1,
         type: 3}
@@ -2628,7 +2633,7 @@ Transform:
   m_GameObject: {fileID: 1532448402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0707, z: 0}
+  m_LocalPosition: {x: 0, y: 0.02, z: -0.063}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

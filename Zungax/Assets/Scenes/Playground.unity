@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -318,7 +318,7 @@ Transform:
   m_GameObject: {fileID: 957891693}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.9, y: 1.66, z: -6.48}
+  m_LocalPosition: {x: -3.9, y: 1.66, z: -2.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -517,7 +517,7 @@ Transform:
   m_GameObject: {fileID: 1713612364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.52, y: 2.79, z: 2.51}
+  m_LocalPosition: {x: -0.52, y: 3.42, z: 2.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -605,6 +605,21 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1713612366}
+    - target: {fileID: 5389556002580054819, guid: 61eef413557d13a42bcaecf6d33c51d2,
+        type: 3}
+      propertyPath: lookfor
+      value: 
+      objectReference: {fileID: 957891693}
+    - target: {fileID: 5389556002580054819, guid: 61eef413557d13a42bcaecf6d33c51d2,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389556002580054819, guid: 61eef413557d13a42bcaecf6d33c51d2,
+        type: 3}
+      propertyPath: _ragdollDuration
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
 
         public Quaternion Rotation { get; set; }
     }
+
     
     private enum EnemyState
     {
@@ -17,6 +18,16 @@ public class Enemy : MonoBehaviour
         StandingUp,
         ResettingBones
     }
+
+    [SerializeField]
+    private int _maxHealth = 2;
+
+    [SerializeField]
+    private int _currentHealth; 
+
+    
+    private float _ragdollDuration = 3f; // Duración del estado de ragdoll después de morir
+
 
     [SerializeField]
     private GameObject lookfor;
@@ -35,6 +46,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private float _timeToResetBones;
+
+
 
     private Rigidbody[] _ragdollRigidbodies;
     private EnemyState _currentState = EnemyState.Walking;
@@ -61,6 +74,7 @@ public class Enemy : MonoBehaviour
         _faceUpStandUpBoneTransforms = new BoneTransform[_bones.Length];
         _faceDownStandUpBoneTransforms = new BoneTransform[_bones.Length];
         _ragdollBoneTransforms = new BoneTransform[_bones.Length];
+        _currentHealth = _maxHealth;
 
         for (int boneIndex = 0; boneIndex < _bones.Length; boneIndex++)
         {
@@ -93,6 +107,7 @@ public class Enemy : MonoBehaviour
                 ResettingBonesBehaviour();
                 break;
         }
+
     }
 
     public void TriggerRagdoll(Vector3 force, Vector3 hitPoint)
@@ -211,6 +226,33 @@ public class Enemy : MonoBehaviour
 
             _animator.Play(GetStandUpStateName(), 0, 0);
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (_currentHealth > 0)
+        {
+            _currentHealth -= damage;
+            if (_currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    private void Die()
+    {
+        EnableRagdoll();
+
+        // Establecer el estado de ragdoll y programar la desaparición
+        _currentState = EnemyState.Ragdoll;
+        Invoke("Disappear", _ragdollDuration);
+    }
+
+    private void Disappear()
+    {
+        // Desaparecer el enemigo
+        gameObject.SetActive(false);
     }
 
     private void AlignRotationToHips()

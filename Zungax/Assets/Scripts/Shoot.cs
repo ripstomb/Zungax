@@ -46,6 +46,7 @@ public class Shoot : MonoBehaviour
                     forceDirection.Normalize();
 
                     Vector3 force = forceMagnitude * forceDirection;
+                    zombie.TakeDamage(1);
 
                     zombie.TriggerRagdoll(force, hitInfo.point);
                 }
